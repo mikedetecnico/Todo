@@ -7,7 +7,7 @@ interface LoginProps {
 
 const Login = ({auth}: LoginProps) => {
     return (
-      <LoginForm buttonText='Login' authorization={auth}/>
+      <LoginForm buttonText='Login' onSubmitCallback={auth.signIn} route='/signup' routeText="Don't have an account? Sign up" />
     )
 }
 

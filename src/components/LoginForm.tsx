@@ -1,11 +1,14 @@
+import IAuth from "../auth/IAuth";
+
 interface LoginFormProps {
     buttonText: string;
+    authorization: IAuth;
 }
 
-const LoginForm = ({buttonText}: LoginFormProps) => {
+const LoginForm = ({buttonText, authorization}: LoginFormProps) => {
     return (
         <div className='h-screen flex items-center justify-center bg-primary'>
-            <form className='bg-primarygray shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4'>
+            <form onSubmit={() => authorization?.signUp('', '')} className='bg-primarygray shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4'>
                 <div className='mb-4'>
                     <label className='block text-white text-sm font-bold mb-2'>
                     Email

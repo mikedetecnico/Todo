@@ -1,8 +1,13 @@
+import IAuth from "../auth/IAuth";
 import LoginForm from "../components/LoginForm";
 
-const Login = () => {
+interface LoginProps {
+  auth: IAuth;
+}
+
+const Login = ({auth}: LoginProps) => {
     return (
-      <LoginForm buttonText='Login'/>
+      <LoginForm buttonText='Login' authorization={auth}/>
     )
 }
 

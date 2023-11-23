@@ -8,7 +8,7 @@ const MainTopHeader = () => {
     const handleWindowResize = useCallback(() => {
         setWidth(window.innerWidth);
 
-        if (width > 768) {
+        if (width > 1024) {
             setShowLinks(true);
         } else {
             setShowLinks(false);

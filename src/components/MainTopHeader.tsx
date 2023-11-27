@@ -1,18 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 
 const MainTopHeader = () => {
-    const [showLinks, setShowLinks] = useState<boolean>(true);
+    const [showLinks, setShowLinks] = useState<boolean>(window.innerWidth > 1024);
 
     const [width, setWidth] = useState<number>(window.innerWidth);
 
     const handleWindowResize = useCallback(() => {
         setWidth(window.innerWidth);
 
-        if (width > 1024) {
-            setShowLinks(true);
-        } else {
-            setShowLinks(false);
-        }
+        setShowLinks(width > 1024);
     }, [width]);
     
     useEffect(() => {

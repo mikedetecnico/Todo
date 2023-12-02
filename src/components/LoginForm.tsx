@@ -1,20 +1,23 @@
 import { useState } from "react";
 import MainTopHeader from "./MainTopHeader";
+import { UseMutateFunction } from "@tanstack/react-query";
+import { IAuthParams } from "../auth/useSignup";
 
 interface LoginFormProps {
     buttonText: string;
-    onSubmitCallback: (userName: string, password: string) => void;
+    onSubmitCallback: UseMutateFunction<void, Error, IAuthParams, unknown>;
     route: string;
     routeText: string;
+    isLoading: boolean;
 }
 
-const LoginForm = ({buttonText, onSubmitCallback, route, routeText}: LoginFormProps) => {
+const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading}: LoginFormProps) => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmitCallback(email, password);
+        onSubmitCallback({email, password});
     }
 
     return (
@@ -46,7 +49,7 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText}: LoginFormPr
                     </div>
                     <div className='md:flex md:items-center'>
                         <div className='md:w-2/3'>
-                            <button className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' type='submit'>
+                            <button disabled={isLoading} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' type='submit'>
                                 {buttonText}
                             </button>
                             <a className='inline-block align-baseline font-bold text-sm text-primaryblue hover:text-hoverblue px-4' href={route}>

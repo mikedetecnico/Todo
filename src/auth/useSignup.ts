@@ -15,6 +15,13 @@ export function useSignup(auth: IAuth) {
             "Account successfully created! Please verufy the new account from the user's email address."
             );
         },
+        onError: (error: Error) => {
+            if (error.message.includes("email-already-in-use")) {
+                toast.error("The email address is already in use by another account");
+            } else {
+                toast.error("An error occurred creating the account");
+            }
+        }
     });
     
     return { signup, isPending };

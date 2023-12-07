@@ -1,7 +1,6 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import IAuth from "./IAuth";
 import { auth } from "../firebase";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default class FirebaseAuth implements IAuth {
     async signUp(email: string, password: string): Promise<void> {
@@ -12,14 +11,15 @@ export default class FirebaseAuth implements IAuth {
         await signInWithEmailAndPassword(auth, email, password)
     }
 
-    async getCurrentUser(): Promise<void> {
+    async getCurrentUser(): Promise<User | null> {
         onAuthStateChanged(auth, (user) => {
-            const queryClient = useQueryClient();
             if (user) {
-                queryClient.setQueryData(['user'], user);
+                console.log("user found");
             } else {
-                console.log("no user")
+                console.log("no user");
             }
         })
+
+        return auth.currentUser;
     }
 }

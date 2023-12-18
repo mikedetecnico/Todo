@@ -2,7 +2,15 @@ import { Router } from "express";
 import { TodoRepository } from "../Repositories/TodoRepository";
 
 export class TodoController {
-    readonly repository : TodoRepository = new TodoRepository();
+    readonly repository : TodoRepository;
+
+    constructor (repository: TodoRepository | null = null) {
+        if (repository !== null) {
+            this.repository = repository;
+        } else {
+            this.repository = new TodoRepository();
+        }
+    }
 
     async add(request: any, response: any) {
         const todo = await this.repository.add(request.body);

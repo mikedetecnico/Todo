@@ -15,6 +15,7 @@
     "@tanstack/react-query-devtools": "^5.12.1",
     "@types/firebase": "^3.2.1",
     "autoprefixer": "^10.4.16",
+    "axios": "^1.6.5",
     "firebase": "^10.5.2",
     "postcss": "^8.4.31",
     "react": "^18.2.0",

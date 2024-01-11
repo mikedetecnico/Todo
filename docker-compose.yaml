@@ -1,0 +1,12 @@
+version: '3'
+services:
+  api:
+    build: ./Api
+    ports:
+      - '3000:3000'
+  frontend:
+    build: ./FrontEnd
+    ports:
+      - '5173:5173'
+    environment:
+      - VITE_API_URL=http://api:3000

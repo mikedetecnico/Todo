@@ -14,7 +14,7 @@ export function useSignup(auth: IAuth) {
         mutationFn: async (params: IAuthParams) => { await auth.signUp(params.email, params.password, params.firstName, params.lastName); },
         onSuccess: () => {
             toast.success(
-            "Account successfully created! Please verufy the new account from the user's email address."
+            "Account successfully created! Please verify the new account from the user's email address."
             );
         },
         onError: (error: Error) => {

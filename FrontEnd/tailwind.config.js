@@ -7,7 +7,13 @@ export default {
       'white': '#ffffff',
       'primarygray': '#454545',
       'primaryblue': '#0085ff',
-      'hoverblue': '#69b4ff'
+      'hoverblue': '#69b4ff',
+      'navbar': "#282828",
+      "hovergray": "#363636",
+    },
+    fontFamily: {
+      'headings': ['Poppins', 'sans-serif'],
+      'body': ['Montserrat', 'sans-serif'],
     },
     extend: {},
   },

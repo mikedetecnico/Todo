@@ -26,4 +26,8 @@ export default class FirebaseAuth implements IAuth {
 
         return auth.currentUser;
     }
+
+    async signOut(): Promise<void> {
+        await auth.signOut();
+    }
 }

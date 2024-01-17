@@ -6,4 +6,6 @@ export default interface IAuth {
     signIn(email: string, password: string): Promise<void>;
 
     getCurrentUser(): Promise<User | null> ;
+
+    signOut(): Promise<void>;
 }

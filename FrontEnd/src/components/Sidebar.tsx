@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useUser } from "../auth/useUser";
 import IAuth from "../auth/IAuth";
 import { BsPersonCircle } from 'react-icons/bs';
+import { BsChevronCompactDown } from "react-icons/bs";
 
 interface SidebarProps {
   auth: IAuth;
@@ -49,14 +50,15 @@ const Sidebar = ({auth}: SidebarProps) => {
             style={{ width: sidebarWidth }} 
             onMouseDown={(e) => e.preventDefault()}
         >
-            <div className="app-sidebar-content" style={{width: sidebarWidth, minWidth: '200px'}} >
+            <div className="app-sidebar-content" style={{width: sidebarWidth, minWidth: '230px'}} >
                 <nav className='flex flex-col h-full'>
                   <div className='border-0 box-border list-none m-0 p-0'>
                     <div className='justify-between align-middle flex-row flex w-full'>
-                      <div className='flex align-middle p-3 items-center'>
+                      <button className='flex align-middle p-3 items-center'>
                         <BsPersonCircle className='text-4xl text-gray-500 m-3'/>
                         <h3 className='text-center'>{user?.email}</h3>
-                      </div>
+                        <BsChevronCompactDown className='m-2'/>
+                      </button>
                     </div>
                   </div>
                 </nav>

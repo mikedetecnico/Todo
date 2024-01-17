@@ -1,10 +1,14 @@
-import { User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import IAuth from "./IAuth";
 import { auth } from "../firebase";
 
 export default class FirebaseAuth implements IAuth {
-    async signUp(email: string, password: string): Promise<void> {
+    async signUp(email: string, password: string, firstName: string, lastName: string): Promise<void> {
         await createUserWithEmailAndPassword(auth, email, password);
+
+        if (auth.currentUser) {
+            await updateProfile(auth.currentUser, {displayName: `${firstName} ${lastName}`});
+        }
     }
 
     async signIn(email: string, password: string): Promise<void> {

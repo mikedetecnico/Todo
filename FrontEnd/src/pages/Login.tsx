@@ -10,7 +10,7 @@ const Login = ({auth}: LoginProps) => {
     const { login, isPending } = useLogin(auth);
 
     return (
-      <LoginForm buttonText='Login' isLoading={isPending} onSubmitCallback={login} route='/signup' routeText="Don't have an account? Sign up" />
+      <LoginForm buttonText='Login' isLoading={isPending} onSubmitCallback={login} route='/signup' routeText="Don't have an account? Sign up" displayName={false}/>
     )
 }
 

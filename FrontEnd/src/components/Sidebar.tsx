@@ -56,7 +56,7 @@ const Sidebar = ({auth}: SidebarProps) => {
                     <div className='justify-between align-middle flex-row flex w-full'>
                       <button className='flex align-middle p-3 items-center'>
                         <BsPersonCircle className='text-4xl text-gray-500 m-3'/>
-                        <h3 className='text-center'>{user?.email}</h3>
+                        <h3 className='text-center'>{user?.displayName}</h3>
                         <BsChevronCompactDown className='m-2'/>
                       </button>
                     </div>

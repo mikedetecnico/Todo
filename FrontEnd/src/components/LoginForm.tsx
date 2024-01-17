@@ -9,15 +9,18 @@ interface LoginFormProps {
     route: string;
     routeText: string;
     isLoading: boolean;
+    displayName: boolean;
 }
 
-const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading}: LoginFormProps) => {
+const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, displayName}: LoginFormProps) => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [firstName, setFirstName] = useState<string>('');
+    const [lastName, setLastName] = useState<string>('');
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmitCallback({email, password});
+        onSubmitCallback({email, password, firstName, lastName});
     }
 
     return (
@@ -47,6 +50,33 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading}: 
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
+                    {displayName && (
+                        <>
+                            <div className='mb-4'>
+                                <label className='block text-white text-sm font-bold mb-2'>
+                                First Name
+                                </label>
+                                <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
+                                    id='firstName' 
+                                    type='text' 
+                                    placeholder='First Name' 
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                            </div>
+                            <div className='mb-4'>
+                                <label className='block text-white text-sm font-bold mb-2'>
+                                Last Name
+                                </label>
+                                <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
+                                    id='lasttName' 
+                                    type='text' 
+                                    placeholder='Last Name' 
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                            </div>
+                        </>
+                    )
+                    }
                     <div className='md:flex md:items-center'>
                         <div className='md:w-2/3'>
                             <button disabled={isLoading} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' type='submit'>

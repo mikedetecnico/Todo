@@ -27,8 +27,8 @@ function App() {
       <Router>
         <main>
           <Routes>
-            <Route element={<ProtectedRoute auth={auth}> <Home /> </ProtectedRoute>}>
-              <Route path="/home" element={<Home />} />
+            <Route element={<ProtectedRoute auth={auth}> <Home auth={auth}/> </ProtectedRoute>}>
+              <Route path="/home" element={<Home auth={auth}/>} />
             </Route>
             <Route path="/" element={<Login auth={auth}/>} />
             <Route path="/login" element={<Login auth={auth}/>} />

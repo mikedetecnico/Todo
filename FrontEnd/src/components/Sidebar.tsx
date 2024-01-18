@@ -3,6 +3,7 @@ import { useUser } from "../auth/useUser";
 import IAuth from "../auth/IAuth";
 import { BsPersonCircle } from 'react-icons/bs';
 import { BsChevronCompactDown } from "react-icons/bs";
+import { BsPlus } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 
 interface SidebarProps {
@@ -83,6 +84,12 @@ const Sidebar = ({auth}: SidebarProps) => {
                         }
                       </button>
                     </div>
+                  </div>
+                  <div className=''> 
+                    <button className='text-primaryblue hover:bg-hovergray flex flex-row w-full m-2 p-2 items-center'>
+                      <BsPlus className='text-2xl'/>
+                      Add task
+                    </button>
                   </div>
                 </nav>
             </div>

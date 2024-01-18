@@ -2,7 +2,7 @@ import Sidebar from "../components/Sidebar";
 import Api, { Todo } from "../api/api";
 import { useEffect, useState } from "react";
 import IAuth from "../auth/IAuth";
-
+import { BsPlus } from "react-icons/bs";
 interface HomeProps {
     auth: IAuth;
 }
@@ -23,10 +23,18 @@ const Home = ({auth}: HomeProps) => {
     return (
         <div className='bg-primary flex flex-row min-h-screen h-screen'>
             <Sidebar auth={auth}/>
-            <div className='flex flex-col w-full h-screen bg-primary items-center content-center'>
+            <div className='flex flex-col w-full h-full bg-primary items-center content-center p-20'>
                 <h1 className='text-white'>Inbox</h1>
-                <div className='flex flex-col w-1/2 h-1/2 bg-white rounded-md'>
-                    {todos.map((todo) => {
+                <div className='flex flex-col w-1/2 h-1/2 bg-primary rounded-md'>
+                    {
+                        !todos.length && <div> 
+                            <button className='text-white hover:bg-hovergray flex flex-row w-full m-2 p-2 items-center'>
+                                <BsPlus className='text-2xl'/>
+                                Add task
+                            </button>
+                        </div>
+                    }
+                    {/* {todos.map((todo) => {
                         return (
                             <div className='flex flex-row w-full h-1/6 bg-white'>
                                 <div className='flex flex-col w-1/6 h-full bg-white'>
@@ -38,7 +46,7 @@ const Home = ({auth}: HomeProps) => {
                                 </div>
                             </div>
                         );
-                    })}
+                    })} */}
                 </div>
             </div>
         </div>

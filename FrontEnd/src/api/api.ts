@@ -5,7 +5,7 @@ export interface Todo {
     task: string;
     scheduledDate: string;
     completed: boolean;
-    userId: string;
+    userId: string | undefined;
 }
 
 export default class Api {

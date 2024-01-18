@@ -39,7 +39,7 @@ const Home = ({auth}: HomeProps) => {
                 <div className='flex flex-col w-1/2 h-1/2 bg-primary rounded-md'>
                     {todos.map((todo) => {
                         return (
-                            <div className='flex flex-row w-full h-1/6 bg-primary p-6'>
+                            <div className='flex flex-row w-full h-1/6 bg-primary p-6 hover:bg-hovergray'>
                                 <div className='flex flex-col w-1/6 h-full'>
                                     <input type='checkbox' placeholder='Complete'/>
                                 </div>

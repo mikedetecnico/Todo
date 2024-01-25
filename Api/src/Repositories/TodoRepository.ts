@@ -15,7 +15,7 @@ export class TodoRepository implements IRepository<Todo> {
     add(item: Todo): Promise<Todo> {
         return this.connection.add(item);
     }
-    delete(id: string): Promise<Todo> {
+    delete(id: string): Promise<Todo | null> {
         return this.connection.delete(id);
     }
     getByUserId(userId: string): Promise<Todo[]> {

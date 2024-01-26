@@ -39,9 +39,9 @@ const Home = ({auth}: HomeProps) => {
             <div className='flex flex-col w-full h-full bg-primary items-center content-center p-20'>
                 <h1 className='text-white text-3xl'>Inbox</h1>
                 <div className='flex flex-col w-1/2 h-1/2 bg-primary rounded-md'>
-                    {todos?.map((todo: Todo) => {
+                    {todos?.map((todo: Todo, index: number) => {
                         return (
-                            <div className='flex flex-row w-full h-1/6 bg-primary p-6 hover:bg-hovergray'>
+                            <div key={`todo${index}`} className='flex flex-row w-full h-1/6 bg-primary p-6 hover:bg-hovergray'>
                                 <div className='flex flex-col w-1/6 h-full'>
                                     <input type='checkbox' placeholder='Complete' onClick={() => handleDeleteTodo(todo.id)}/>
                                 </div>

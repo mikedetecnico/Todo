@@ -15,7 +15,7 @@ export default class Api {
         }
 
         const apiUrl : string = import.meta.env.VITE_API_URL;
-        return (await axios.get(`${apiUrl}/todos?userId=${userId}`)).data;
+        return (await axios.get(`${apiUrl}/todos/${userId}`)).data;
     }
 
     static async addTodo(todo: Todo) : Promise<Todo> {

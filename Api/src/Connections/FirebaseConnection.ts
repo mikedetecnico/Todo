@@ -46,7 +46,9 @@ export class FirebaseConnection<T> implements IConnection<T> {
         
             querySnapshot.forEach((doc) => {
                 if(doc.data().userId === userId) {
-                    entries.push(doc.data() as T);
+                    let entry = doc.data() as any;
+                    entry.id = doc.id;
+                    entries.push(entry as T);
                 }
             });
         } catch (error: any) {

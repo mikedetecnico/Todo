@@ -16,28 +16,26 @@ export class FirebaseConnection<T> implements IConnection<T> {
 
     async add(item: T): Promise<T> {
         try {
-            await this.db.collection(this.collectionName).doc().create({item});
-            return item
+            const res = await this.db.collection(this.collectionName).add(item as any);
+            (item as any).id = res.id;
+            return item;
         } catch (error: any) {
             throw new Error("Error adding entry");
         }
     }
 
     async delete(id: string): Promise<T> {
-        const querySnapshot = await this.db.collection(this.collectionName).get();
-        let entry : T | null = null;
-        querySnapshot.forEach((doc) => {
-            if(doc.data().item?.id == id) {
-                entry = doc.data().item;
-                doc.ref.delete();
-            }
-        });
+        const entry = await this.db.collection(this.collectionName).doc(id);
 
-        if (entry === null) {
+        if (!entry) {
             throw new Error("Entry not found");
         }
 
-        return entry;
+        const doc = await entry.get();
+
+        await entry.delete();
+
+        return doc.data() as T;
     }
 
     async getByUserId(userId: string): Promise<T[]> {
@@ -47,8 +45,8 @@ export class FirebaseConnection<T> implements IConnection<T> {
             const querySnapshot = await this.db.collection(this.collectionName).get();
         
             querySnapshot.forEach((doc) => {
-                if(doc.data().item?.userId === userId) {
-                    entries.push(doc.data().item);
+                if(doc.data().userId === userId) {
+                    entries.push(doc.data() as T);
                 }
             });
         } catch (error: any) {
@@ -59,23 +57,14 @@ export class FirebaseConnection<T> implements IConnection<T> {
     }
 
     async update(patchedItem: T, id: string): Promise<T> {
-        const querySnapshot = await this.db.collection(this.collectionName).get();
+        const entry = await this.db.collection(this.collectionName).doc(id);
 
-        let updatedItem : T | null = null;
-
-        querySnapshot.forEach(async (doc) => {
-            if(doc.data().item?.id == id) {
-                let item = doc.data().item;
-                item = {...item, ...patchedItem};
-                updatedItem = item as T;
-                await doc.ref.update({item});
-            }
-        });
-
-        if (updatedItem === null) {
+        if (!entry) {
             throw new Error("Entry not found");
         }
-        
-        return updatedItem;
+
+        await entry.update(patchedItem as any);
+
+        return (await entry.get()).data() as T;
     }
 }

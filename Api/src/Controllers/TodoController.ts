@@ -13,16 +13,37 @@ export class TodoController {
     }
 
     async add(request: any, response: any) {
-        const todo = await this.repository.add(request.body);
-        response.status(201).json(todo);
+        try {
+            const todo = await this.repository.add(request.body);
+            response.status(201).json(todo);
+        } catch(error: any) {
+            response.status(500).send(error.message);
+        }
     }
     async delete(request: any, response: any) {
-        const todo = await this.repository.delete(request.params.id);
-        response.status(200).json(todo);
+        try {
+            const todo = await this.repository.delete(request.params.id);
+            response.status(200).json(todo);
+        } catch (error: any) {
+            response.status(404).send(error.message);
+        }
     }
     async getByUserId(request: any, response: any) {
-        const todos = await this.repository.getByUserId(request.params.userId);
-        response.status(200).json(todos);
+        try {
+            const todos = await this.repository.getByUserId(request.params.userId);
+            response.status(200).json(todos);
+        } catch (error: any) {
+            response.status(500).send(error.message);
+        }
+    }
+
+    async update(request: any, response: any) {
+        try {
+            const todo = await this.repository.update(request.body, request.params.id);
+            response.status(200).json(todo);
+        } catch (error: any) {
+            response.status(404).send(error.message);
+        }
     }
 }
 
@@ -32,4 +53,5 @@ const todoRouter = Router();
 todoRouter.post('/', async (request, response) => await controller.add(request, response));
 todoRouter.delete('/:id', async (request, response) => await controller.delete(request, response));
 todoRouter.get('/:userId', async (request, response) => await controller.getByUserId(request, response));
+todoRouter.put('/:id', async (request, response) => await controller.update(request, response));
 export default todoRouter;

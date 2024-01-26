@@ -12,13 +12,17 @@ export class TodoRepository implements IRepository<Todo> {
         } 
     }
 
-    add(item: Todo): Promise<Todo> {
-        return this.connection.add(item);
+    async add(item: Todo): Promise<Todo> {
+        return await this.connection.add(item);
     }
-    delete(id: string): Promise<Todo | null> {
-        return this.connection.delete(id);
+    async delete(id: string): Promise<Todo | null> {
+        return await this.connection.delete(id);
     }
-    getByUserId(userId: string): Promise<Todo[]> {
-        return this.connection.getByUserId(userId);
+    async getByUserId(userId: string): Promise<Todo[]> {
+        return await this.connection.getByUserId(userId);
+    }
+
+    async update(item: Todo, id: string): Promise<Todo> {
+        return await this.connection.update(item, id);
     }
 }

@@ -5,13 +5,13 @@ import toast from 'react-hot-toast';
 import { useUser } from '../auth/useUser';
 import IAuth from '../auth/IAuth';
 
-interface TodoModalProps {
+interface CreateTodoModalProps {
     auth: IAuth;
     showModal: boolean;
     onClose: () => void;
 }
 
-const TodoModal = ({auth, showModal, onClose}: TodoModalProps) => {
+const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {
     const { user } = useUser(auth);
     
     const {createTodo, isPending} = useCreateTodos();
@@ -86,4 +86,4 @@ const TodoModal = ({auth, showModal, onClose}: TodoModalProps) => {
     )
 }
 
-export default TodoModal;
+export default CreateTodoModal;

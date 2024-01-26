@@ -27,4 +27,9 @@ export default class Api {
         const apiUrl : string = import.meta.env.VITE_API_URL;
         return (await axios.delete(`${apiUrl}/todos/${id}`)).data;
     }
+
+    static async updateTodoById(todo: Todo) : Promise<Todo> {
+        const apiUrl : string = import.meta.env.VITE_API_URL;
+        return (await axios.put(`${apiUrl}/todos/${todo.id}`, todo)).data;
+    }
 }

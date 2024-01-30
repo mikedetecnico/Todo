@@ -4,12 +4,14 @@ import { Todo } from "../Models/Todo";
 import { IRepository } from "./IRepository";
 
 export class TodoRepository implements IRepository<Todo> {
-    readonly connection: IConnection<Todo> = new FirebaseConnection<Todo>("Todos");;  
+    readonly connection: IConnection<Todo>;
 
     constructor(connection: IConnection<Todo> | null = null) {
         if (connection !== null) {
             this.connection = connection;
-        } 
+        } else {
+            this.connection = new FirebaseConnection<Todo>('todos');
+        }
     }
 
     async add(item: Todo): Promise<Todo> {

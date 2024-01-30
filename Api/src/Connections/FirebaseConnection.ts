@@ -6,11 +6,16 @@ export class FirebaseConnection<T> implements IConnection<T> {
     readonly db: admin.firestore.Firestore;
     readonly collectionName: string;
 
-    constructor(collectionName: string) {
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-        });
-        this.db = admin.firestore();
+    constructor(collectionName: string, db: admin.firestore.Firestore | null = null) {
+        if (db !== null) {
+            this.db = db;
+        } else {
+            admin.initializeApp({
+                credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+            });
+            this.db = admin.firestore();
+        }
+
         this.collectionName = collectionName;
     }
 
@@ -45,7 +50,8 @@ export class FirebaseConnection<T> implements IConnection<T> {
             const querySnapshot = await this.db.collection(this.collectionName).get();
         
             querySnapshot.forEach((doc) => {
-                if(doc.data().userId === userId) {
+                const entry = doc.data() as any;
+                if(entry.userId === userId) {
                     let entry = doc.data() as any;
                     entry.id = doc.id;
                     entries.push(entry as T);
@@ -68,5 +74,13 @@ export class FirebaseConnection<T> implements IConnection<T> {
         await entry.update(patchedItem as any);
 
         return (await entry.get()).data() as T;
+    }
+
+    async deleteAll(): Promise<void> {
+        const querySnapshot = await this.db.collection(this.collectionName).get();
+
+        querySnapshot.forEach((doc) => {
+            doc.ref.delete();
+        });
     }
 }

@@ -38,9 +38,14 @@ export class FirebaseConnection<T> implements IConnection<T> {
 
         const doc = await entry.get();
 
+        const currentId = doc.id;
+
         await entry.delete();
 
-        return doc.data() as T;
+        let entryData = doc.data() as any;
+        entryData.id = currentId
+
+        return entryData as T;
     }
 
     async getByUserId(userId: string): Promise<T[]> {

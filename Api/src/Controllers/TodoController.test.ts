@@ -87,4 +87,32 @@ describe('TodoController', () => {
     expect(mockResponse.status).toHaveBeenCalledWith(200);
     expect(mockResponse.json).toHaveBeenCalledWith(toDelete);
   });
+
+  it('should update a todo', async () => {
+    // add the todo to the database.
+    const mockTodo = { task: 'Test Todo', scheduledDate: '', userId: 'test', completed: false };
+
+    const mockAddResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await controller.add({ body: mockTodo }, mockAddResponse);
+
+    // get the first todo from the database so we have a id to update and update
+    const toUpdate = mockAddResponse.json.mock.calls[0][0]; 
+
+    const mockUpdateResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    toUpdate.task = 'Updated Task';
+
+    await controller.update({ body: toUpdate, params: {id : toUpdate.id} }, mockUpdateResponse);
+
+    // verify that the response was correct.
+    expect(mockUpdateResponse.status).toHaveBeenCalledWith(200);
+    expect(mockUpdateResponse.json).toHaveBeenCalledWith(toUpdate);
+  });
 });

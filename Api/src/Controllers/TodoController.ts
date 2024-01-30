@@ -17,7 +17,7 @@ export class TodoController {
             const todo = await this.repository.add(request.body);
             response.status(201).json(todo);
         } catch(error: any) {
-            response.status(500).send(error.message);
+            response.status(500).json(error.message);
         }
     }
     async delete(request: any, response: any) {
@@ -25,7 +25,7 @@ export class TodoController {
             const todo = await this.repository.delete(request.params.id);
             response.status(200).json(todo);
         } catch (error: any) {
-            response.status(404).send(error.message);
+            response.status(404).json(error.message);
         }
     }
     async getByUserId(request: any, response: any) {
@@ -33,7 +33,7 @@ export class TodoController {
             const todos = await this.repository.getByUserId(request.params.userId);
             response.status(200).json(todos);
         } catch (error: any) {
-            response.status(500).send(error.message);
+            response.status(500).json(error.message);
         }
     }
 
@@ -42,7 +42,7 @@ export class TodoController {
             const todo = await this.repository.update(request.body, request.params.id);
             response.status(200).json(todo);
         } catch (error: any) {
-            response.status(404).send(error.message);
+            response.status(404).json(error.message);
         }
     }
 }

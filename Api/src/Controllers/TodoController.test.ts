@@ -115,4 +115,60 @@ describe('TodoController', () => {
     expect(mockUpdateResponse.status).toHaveBeenCalledWith(200);
     expect(mockUpdateResponse.json).toHaveBeenCalledWith(toUpdate);
   });
+
+  it('should return 404 when deleting a todo that does not exist', async () => {
+    const mockResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await controller.delete({ params: { id: 'test' } }, mockResponse);
+
+    expect(mockResponse.status).toHaveBeenCalledWith(404);
+  });
+
+  it('should return 404 when updating a todo that does not exist', async () => {
+    const mockResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await controller.update({ body: {}, params: { id: 'test' } }, mockResponse);
+
+    expect(mockResponse.status).toHaveBeenCalledWith(404);
+  });
+
+  it('should return 500 when adding a todo fails', async () => {
+    // mocking the firebase connection to throw an error when adding a todo
+    // since there will be no db connection.
+    const testFirebaseConnection = new FirebaseConnection<Todo>('todos', {} as any);
+    const testTodoRepository = new TodoRepository(testFirebaseConnection);
+    const testController = new TodoController(testTodoRepository);
+
+    const mockResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };  
+
+    await testController.add({ body: {} }, mockResponse);
+
+    expect(mockResponse.status).toHaveBeenCalledWith(500);
+  });
+
+  it('should return 500 when getting todos fails', async () => {
+    // mocking the firebase connection to throw an error when getting todos
+    // since there will be no db connection.
+    const testFirebaseConnection = new FirebaseConnection<Todo>('todos', {} as any);
+    const testTodoRepository = new TodoRepository(testFirebaseConnection);
+    const testController = new TodoController(testTodoRepository);
+
+    const mockResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await testController.getByUserId({ params: { userId: 'test' } }, mockResponse);
+
+    expect(mockResponse.status).toHaveBeenCalledWith(500);
+  });
 });

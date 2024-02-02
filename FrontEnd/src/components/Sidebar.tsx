@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 
 interface SidebarProps {
   auth: IAuth;
+  onOpenAddTaskModal: () => void;
 }
 
-const Sidebar = ({auth}: SidebarProps) => {
+const Sidebar = ({auth, onOpenAddTaskModal}: SidebarProps) => {
     const { user } = useUser(auth);
     const sidebarRef = useRef<HTMLInputElement>(null);
     const [isResizing, setIsResizing] = useState<boolean>(false);
@@ -86,7 +87,7 @@ const Sidebar = ({auth}: SidebarProps) => {
                     </div>
                   </div>
                   <div className=''> 
-                    <button className='text-primaryblue hover:bg-hovergray flex flex-row w-full m-2 p-2 items-center'>
+                    <button className='text-primaryblue hover:bg-hovergray flex flex-row w-full m-2 p-2 items-center' onClick={onOpenAddTaskModal}>
                       <BsPlus className='text-2xl'/>
                       Add task
                     </button>

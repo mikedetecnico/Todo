@@ -49,7 +49,7 @@ const Home = ({auth}: HomeProps) => {
 
     return (
         <div className='bg-primary flex flex-row min-h-screen h-screen'>
-            <Sidebar auth={auth}/>
+            <Sidebar auth={auth} onOpenAddTaskModal={handleOpenCreateModal}/>
             <div className='flex flex-col w-full h-full bg-primary items-center content-center p-20'>
                 <h1 className='text-white text-3xl'>Inbox</h1>
                 <div className='flex flex-col w-1/2 h-1/2 bg-primary rounded-md'>

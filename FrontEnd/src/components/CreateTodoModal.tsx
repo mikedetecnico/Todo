@@ -70,11 +70,11 @@ const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {
                             />
                         </div>
                         <div className='md:flex md:items-center'>
-                        <div className='md:w-2/3 flex flex-row items-start'>
+                        <div className='md:w-2/3 flex flex-row items-start justify-between'>
                             <button disabled={isPending} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' onClick={handleClose}>
                                 Cancel
                             </button>
-                            <button disabled={isPending} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-6 rounded' type='submit'>
+                            <button disabled={isPending} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' type='submit'>
                                 Add Task
                             </button>
                         </div>

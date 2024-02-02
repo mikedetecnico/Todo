@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Todo } from '../api/api';
 import { useCreateTodos } from '../features/todos/useCreateTodo';
 import toast from 'react-hot-toast';
-import { useUser } from '../auth/useUser';
-import IAuth from '../auth/IAuth';
+import { useUser } from '../features/auth/useUser';
+import IAuth from '../features/auth/IAuth';
 
 interface CreateTodoModalProps {
     auth: IAuth;

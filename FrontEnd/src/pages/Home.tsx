@@ -1,10 +1,10 @@
 import Sidebar from "../components/Sidebar";
 import { Todo } from "../api/api";
 import { useState } from "react";
-import IAuth from "../auth/IAuth";
+import IAuth from "../features/auth/IAuth";
 import { BsPlus } from "react-icons/bs";
 import CreateTodoModal from "../components/CreateTodoModal";
-import { useUser } from "../auth/useUser";
+import { useUser } from "../features/auth/useUser";
 import { useTodos } from "../features/todos/useTodos";
 import { useDeleteTodo } from "../features/todos/useDeleteTodo";
 import EditTodoModal from "../components/EditTodoModal";

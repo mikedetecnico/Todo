@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MainTopHeader from "./MainTopHeader";
 import { UseMutateFunction } from "@tanstack/react-query";
-import { IAuthParams } from "../auth/useSignup";
+import { IAuthParams } from "../features/auth/useSignup";
 
 interface LoginFormProps {
     buttonText: string;

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useUser } from "../auth/useUser";
-import IAuth from "../auth/IAuth";
+import { useUser } from "../features/auth/useUser";
+import IAuth from "../features/auth/IAuth";
 import { BsPersonCircle } from 'react-icons/bs';
 import { BsChevronCompactDown } from "react-icons/bs";
 import { BsPlus } from "react-icons/bs";

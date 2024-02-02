@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useUser } from "../auth/useUser";
-import IAuth from "../auth/IAuth";
+import { useUser } from "../features/auth/useUser";
+import IAuth from "../features/auth/IAuth";
 
 interface ProtectedRouteProps {
     auth: IAuth;

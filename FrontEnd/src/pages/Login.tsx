@@ -1,5 +1,5 @@
-import IAuth from "../auth/IAuth";
-import { useLogin } from "../auth/useLogin";
+import IAuth from "../features/auth/IAuth";
+import { useLogin } from "../features/auth/useLogin";
 import LoginForm from "../components/LoginForm";
 
 interface LoginProps {

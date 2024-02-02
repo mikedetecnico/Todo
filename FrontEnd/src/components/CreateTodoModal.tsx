@@ -24,7 +24,7 @@ const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {
     }, [showModal])
 
     const handleClose = () => {
-        setShow(false);
+        setShow(!show);
         onClose();
     }
 
@@ -45,7 +45,7 @@ const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {
             toast.error('Todo is undefined');
         }
 
-        setShow(false);
+        setShow(!show);
     }
     
     return (

@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useUser } from "../features/auth/useUser";
 import IAuth from "../features/auth/IAuth";
-import { BsPersonCircle } from 'react-icons/bs';
-import { BsChevronCompactDown } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import AddButton from "../widgets/AddButton";
+import ProfileMenu from "../widgets/ProfileMenu";
 
 interface SidebarProps {
   auth: IAuth;
@@ -70,22 +69,12 @@ const Sidebar = ({auth, onOpenAddTaskModal}: SidebarProps) => {
         >
             <div className="app-sidebar-content" style={{width: sidebarWidth, minWidth: '230px'}} >
                 <nav className='flex flex-col h-full'>
-                  <div className='border-0 box-border list-none m-0 p-0'>
-                    <div className='justify-between align-middle flex-row flex w-full'>
-                      <button className='flex align-middle p-3 items-center hover:bg-hovergray' onClick={handleProfileModal}>
-                        <BsPersonCircle className='text-4xl text-gray-500 m-3'/>
-                        <h3 className='text-center'>{user?.displayName}</h3>
-                        <BsChevronCompactDown className='m-2'/>
-                        {
-                          openProfileModal && <div className='absolute top-16 left-10 bg-navbar border-2 border-gray-300 rounded-md shadow-md z-40'>
-                              <div className='flex flex-col'>
-                                <button className='p-2 hover:bg-hovergray' onClick={handleSignout}>Logout</button>
-                              </div>
-                            </div>
-                        }
-                      </button>
-                    </div>
-                  </div>
+                  <ProfileMenu 
+                    userDisplayName={user?.displayName} 
+                    showProfileModal={openProfileModal} 
+                    onProfileModal={handleProfileModal} 
+                    onSignout={handleSignout}
+                  />
                   <AddButton buttonText='Add task' onClickCallback={onOpenAddTaskModal}/>
                 </nav>
             </div>

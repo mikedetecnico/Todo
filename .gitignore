@@ -25,3 +25,4 @@ Api/.vscode/*
 *.sw?
 .env
 *admin.json
+Api/coverage/*

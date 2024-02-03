@@ -2,12 +2,12 @@ import Sidebar from "../components/Sidebar";
 import { Todo } from "../api/api";
 import { useState } from "react";
 import IAuth from "../features/auth/IAuth";
-import { BsPlus } from "react-icons/bs";
 import CreateTodoModal from "../components/CreateTodoModal";
 import { useUser } from "../features/auth/useUser";
 import { useTodos } from "../features/todos/useTodos";
 import { useDeleteTodo } from "../features/todos/useDeleteTodo";
 import EditTodoModal from "../components/EditTodoModal";
+import AddButton from "../widgets/AddButton";
 
 interface HomeProps {
     auth: IAuth;
@@ -77,10 +77,7 @@ const Home = ({auth}: HomeProps) => {
                         }
                     </div>
                     <div> 
-                        <button className='text-white hover:bg-hovergray flex flex-row w-full m-2 p-2 items-center' onClick={handleOpenCreateModal}>
-                            <BsPlus className='text-2xl'/>
-                            Add task
-                        </button>
+                        <AddButton buttonText='Add task' onClickCallback={handleOpenCreateModal}/>
                         {showCreateModal && 
                             <CreateTodoModal auth={auth} showModal={showCreateModal} onClose={handleCloseCreateModal}/>
                         }

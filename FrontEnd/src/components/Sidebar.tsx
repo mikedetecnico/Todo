@@ -3,8 +3,8 @@ import { useUser } from "../features/auth/useUser";
 import IAuth from "../features/auth/IAuth";
 import { BsPersonCircle } from 'react-icons/bs';
 import { BsChevronCompactDown } from "react-icons/bs";
-import { BsPlus } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
+import AddButton from "../widgets/AddButton";
 
 interface SidebarProps {
   auth: IAuth;
@@ -86,12 +86,7 @@ const Sidebar = ({auth, onOpenAddTaskModal}: SidebarProps) => {
                       </button>
                     </div>
                   </div>
-                  <div className=''> 
-                    <button className='text-primaryblue hover:bg-hovergray flex flex-row w-full m-2 p-2 items-center' onClick={onOpenAddTaskModal}>
-                      <BsPlus className='text-2xl'/>
-                      Add task
-                    </button>
-                  </div>
+                  <AddButton buttonText='Add task' onClickCallback={onOpenAddTaskModal}/>
                 </nav>
             </div>
             <div className="app-sidebar-resizer" onMouseDown={startResizing}/>

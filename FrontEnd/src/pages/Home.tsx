@@ -8,6 +8,7 @@ import { useTodos } from "../features/todos/useTodos";
 import { useDeleteTodo } from "../features/todos/useDeleteTodo";
 import EditTodoModal from "../components/EditTodoModal";
 import AddButton from "../widgets/AddButton";
+import TodoWidget from "../widgets/TodoWidget";
 
 interface HomeProps {
     auth: IAuth;
@@ -55,20 +56,7 @@ const Home = ({auth}: HomeProps) => {
                 <div className='flex flex-col w-1/2 h-1/2 bg-primary rounded-md'>
                     {todos?.map((todo: Todo, index: number) => {
                         return (
-                            <div key={`todo${index}`} className='flex flex-row w-full h-1/6 bg-primary p-6 hover:bg-hovergray'>
-                                <div className='flex flex-col w-1/6 h-full'>
-                                    <input type='checkbox' placeholder='Complete' onClick={() => handleDeleteTodo(todo.id)}/>
-                                </div>
-                                <div className='flex flex-row w-full h-full' onClick={() => handleOpenEditModal(todo)}>
-                                    <div className='flex flex-col w-5/6 h-full text-white'>
-                                        <h1>{todo.task}</h1>
-                                    </div>
-                                    <div className='flex flex-col w-5/6 h-full text-white'>
-                                        <h1>{todo.scheduledDate}</h1>
-                                    </div>
-                                </div>
-
-                            </div>
+                            <TodoWidget todo={todo} index={index} onDeleteTodo={handleDeleteTodo} onOpenEditModal={handleOpenEditModal}/>
                         );
                     })}
                     <div>

@@ -2,8 +2,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useUser } from "../features/auth/useUser";
 import IAuth from "../features/auth/IAuth";
 import { useNavigate } from 'react-router-dom';
-import AddButton from "../widgets/AddButton";
+import CustomButton from "../widgets/CustomButton";
 import ProfileMenu from "../widgets/ProfileMenu";
+import { BsPlus } from "react-icons/bs";
 
 interface SidebarProps {
   auth: IAuth;
@@ -75,7 +76,7 @@ const Sidebar = ({auth, onOpenAddTaskModal}: SidebarProps) => {
                     onProfileModal={handleProfileModal} 
                     onSignout={handleSignout}
                   />
-                  <AddButton buttonText='Add task' onClickCallback={onOpenAddTaskModal}/>
+                  <CustomButton buttonText='Add task' onClickCallback={onOpenAddTaskModal} Icon={BsPlus}/>
                 </nav>
             </div>
             <div className="app-sidebar-resizer" onMouseDown={startResizing}/>

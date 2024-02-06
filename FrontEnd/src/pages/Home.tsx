@@ -7,8 +7,9 @@ import { useUser } from "../features/auth/useUser";
 import { useTodos } from "../features/todos/useTodos";
 import { useDeleteTodo } from "../features/todos/useDeleteTodo";
 import EditTodoModal from "../components/EditTodoModal";
-import AddButton from "../widgets/AddButton";
+import CustomButton from "../widgets/CustomButton";
 import TodoWidget from "../widgets/TodoWidget";
+import { BsPlus } from "react-icons/bs";
 
 interface HomeProps {
     auth: IAuth;
@@ -65,7 +66,7 @@ const Home = ({auth}: HomeProps) => {
                         }
                     </div>
                     <div> 
-                        <AddButton buttonText='Add task' onClickCallback={handleOpenCreateModal}/>
+                        <CustomButton buttonText='Add task' onClickCallback={handleOpenCreateModal} Icon={BsPlus}/>
                         {showCreateModal && 
                             <CreateTodoModal auth={auth} showModal={showCreateModal} onClose={handleCloseCreateModal}/>
                         }

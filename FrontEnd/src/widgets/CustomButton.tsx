@@ -1,17 +1,16 @@
-import { BsPlus } from "react-icons/bs";
-
-interface AddButtonProps {
+interface CustomButtonProps {
     buttonText: string;
     onClickCallback: () => void;
+    Icon?: React.ElementType;
 }
 
-const AddButton = ({buttonText, onClickCallback}: AddButtonProps) => {
+const CustomButton = ({buttonText, onClickCallback, Icon}: CustomButtonProps) => {
     return (
         <button className='text-primaryblue hover:bg-hovergray flex flex-row w-full m-2 p-2 items-center' onClick={onClickCallback}>
-            <BsPlus className='text-2xl'/>
+            {Icon && <Icon className='text-2xl'/>}
             {buttonText}
         </button>
     )
 }
 
-export default AddButton;
+export default CustomButton;

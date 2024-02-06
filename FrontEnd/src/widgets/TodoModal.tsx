@@ -4,6 +4,7 @@ import DatePicker from "./DatePicker";
 import { Todo } from "../api/api";
 import { useUser } from "../features/auth/useUser";
 import IAuth from "../features/auth/IAuth";
+import TextInput from "./TextInput";
 
 interface TodoModalProps {
     auth: IAuth;
@@ -65,11 +66,10 @@ const TodoModal = ({auth, showModal, onClose, todo, submitTodo, isPending, okayB
             {show &&
                 <div className='bg-primarygray shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4'>
                     <div className='mb-4'>
-                        <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
-                            id='taskDescription' 
-                            type='text' 
-                            placeholder={'task description'} 
-                            onChange={(e) => setTask(e.target.value)}
+                        <TextInput 
+                            id='taskDescription'
+                            placeholder='task description'
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTask(e.target.value)}
                             value={task}
                         />
                     </div>

@@ -1,5 +1,6 @@
 import { DayPicker } from "react-day-picker";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import TextInput from "./TextInput";
 
 interface DatePickerProps {
     scheduledDate: Date;
@@ -11,10 +12,9 @@ interface DatePickerProps {
 const DatePicker = ({scheduledDate, showDatePopup, setShowDatePopup, handleDateChange}: DatePickerProps) => {
     return (
         <div className='mb-4'>
-            <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
-                id='taskScheduledDate' 
-                type='text' 
-                placeholder={'Select a date'} 
+            <TextInput 
+                id='taskScheduledDate'
+                placeholder='Select a date'
                 value={scheduledDate.toDateString()}
                 onClick={() => setShowDatePopup(!showDatePopup)}
             />

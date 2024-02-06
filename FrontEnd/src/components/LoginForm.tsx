@@ -2,6 +2,7 @@ import { useState } from "react";
 import MainTopHeader from "./MainTopHeader";
 import { UseMutateFunction } from "@tanstack/react-query";
 import { IAuthParams } from "../features/auth/useSignup";
+import TextInput from "../widgets/TextInput";
 
 interface LoginFormProps {
     buttonText: string;
@@ -32,22 +33,23 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, d
                         <label className='block text-white text-sm font-bold mb-2'>
                         Email
                         </label>
-                        <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
-                            id='email' 
-                            type='text' 
-                            placeholder='Email' 
-                            onChange={(e) => setEmail(e.target.value)}
+                        <TextInput 
+                            id='email'
+                            placeholder='Email'
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                            value={email}
                         />
                     </div>
                     <div className='mb-4'>
                         <label className='block text-white text-sm font-bold mb-2'>
                         Password
                         </label>
-                        <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray mb-3 leading-tight focus:outline-none focus:shadow-outline' 
-                            id='password' 
-                            type='password' 
-                            placeholder='password' 
-                            onChange={(e) => setPassword(e.target.value)}
+                        <TextInput 
+                            id='password'
+                            isPassword={true}
+                            placeholder='Password'
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                            value={password}
                         />
                     </div>
                     {displayName && (
@@ -56,22 +58,22 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, d
                                 <label className='block text-white text-sm font-bold mb-2'>
                                 First Name
                                 </label>
-                                <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
-                                    id='firstName' 
-                                    type='text' 
-                                    placeholder='First Name' 
-                                    onChange={(e) => setFirstName(e.target.value)}
+                                <TextInput 
+                                    id='firstName'
+                                    placeholder='First Name'
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
+                                    value={firstName}
                                 />
                             </div>
                             <div className='mb-4'>
                                 <label className='block text-white text-sm font-bold mb-2'>
                                 Last Name
                                 </label>
-                                <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
-                                    id='lasttName' 
-                                    type='text' 
-                                    placeholder='Last Name' 
-                                    onChange={(e) => setLastName(e.target.value)}
+                                <TextInput 
+                                    id='lastName'
+                                    placeholder='Last Name'
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
+                                    value={lastName}
                                 />
                             </div>
                         </>

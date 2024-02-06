@@ -1,78 +1,28 @@
-import { useEffect, useState } from 'react';
 import { Todo } from '../api/api';
-import toast from 'react-hot-toast';
+import IAuth from '../features/auth/IAuth';
 import { useEditTodos } from '../features/todos/useEditTodo';
-import DatePicker from '../widgets/DatePicker';
-import CustomButton from '../widgets/CustomButton';
+import TodoModal from '../widgets/TodoModal';
 
 interface EditTodoModalProps {
+    auth: IAuth;
     showModal: boolean;
     onClose: () => void;
     todo: Todo;
 }
 
-const EditTodoModal = ({showModal, onClose, todo}: EditTodoModalProps) => {   
+const EditTodoModal = ({auth, showModal, onClose, todo}: EditTodoModalProps) => {   
     const {editTodo, isPending} = useEditTodos();
-    const [show, setShow] = useState<boolean>(false);
-    const [task, setTask] = useState<string>(todo.task);
-    const [showDatePopup, setShowDatePopup] = useState<boolean>(false);
-    const [scheduledDate, setScheduledDate] = useState<Date>(new Date());
-
-    useEffect(() => {
-        setShow(showModal);
-    }, [showModal])
-
-    const handleClose = () => {
-        setShow(false);
-        onClose();
-    }
-
-    const handleSubmit = () => {
-        if (todo) {
-            todo.task = task;
-            todo.scheduledDate = scheduledDate.toDateString();
-            editTodo(todo);
-        } else {
-            toast.error('Todo is undefined');
-        }
-
-        setShow(false);
-    }
-
-    const handleDateChange = (date: Date | undefined) => {
-        if (!date) {
-            return;
-        }
-
-        setScheduledDate(date);
-        setShowDatePopup(!showDatePopup);
-    }
     
     return (
-        <>
-            {show &&
-                <div className=''>
-                    <form onSubmit={handleSubmit} className='bg-primarygray shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4'>
-                        <div className='mb-4'>
-                            <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
-                                id='taskDescription' 
-                                type='text' 
-                                placeholder={task} 
-                                value={task}
-                                onChange={(e) => setTask(e.target.value)}
-                            />
-                        </div>
-                        <DatePicker scheduledDate={scheduledDate} showDatePopup={showDatePopup} setShowDatePopup={setShowDatePopup} handleDateChange={handleDateChange}/>
-                        <div className='md:flex md:items-center'>
-                        <div className='md:w-2/3 flex flex-row items-start justify-between'>
-                            <CustomButton disabled={isPending} onClickCallback={handleClose} buttonText='Cancel' styling='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'/>
-                            <CustomButton disabled={isPending} buttonText='Add Task' styling='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' onClickCallback={handleSubmit}/>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-            }
-        </>
+        <TodoModal 
+            auth={auth} 
+            showModal={showModal} 
+            onClose={onClose} 
+            todo={todo} 
+            submitTodo={editTodo} 
+            isPending={isPending} 
+            okayButtonText='Edit Task' 
+        />
     )
 }
 

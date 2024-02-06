@@ -62,7 +62,7 @@ const Home = ({auth}: HomeProps) => {
                     })}
                     <div>
                         {(showEditModal && selectedTodo) && 
-                            <EditTodoModal showModal={showEditModal} onClose={handleCloseEditModal} todo={selectedTodo}/>
+                            <EditTodoModal auth={auth} showModal={showEditModal} onClose={handleCloseEditModal} todo={selectedTodo}/>
                         }
                     </div>
                     <div> 

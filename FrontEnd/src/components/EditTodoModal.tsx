@@ -3,6 +3,7 @@ import { Todo } from '../api/api';
 import toast from 'react-hot-toast';
 import { useEditTodos } from '../features/todos/useEditTodo';
 import DatePicker from '../widgets/DatePicker';
+import CustomButton from '../widgets/CustomButton';
 
 interface EditTodoModalProps {
     showModal: boolean;
@@ -26,9 +27,7 @@ const EditTodoModal = ({showModal, onClose, todo}: EditTodoModalProps) => {
         onClose();
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
+    const handleSubmit = () => {
         if (todo) {
             todo.task = task;
             todo.scheduledDate = scheduledDate.toDateString();
@@ -65,13 +64,9 @@ const EditTodoModal = ({showModal, onClose, todo}: EditTodoModalProps) => {
                         </div>
                         <DatePicker scheduledDate={scheduledDate} showDatePopup={showDatePopup} setShowDatePopup={setShowDatePopup} handleDateChange={handleDateChange}/>
                         <div className='md:flex md:items-center'>
-                        <div className='md:w-2/3 flex flex-row items-start'>
-                            <button disabled={isPending} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' onClick={handleClose}>
-                                Cancel
-                            </button>
-                            <button disabled={isPending} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-6 rounded' type='submit'>
-                                Edit Task
-                            </button>
+                        <div className='md:w-2/3 flex flex-row items-start justify-between'>
+                            <CustomButton disabled={isPending} onClickCallback={handleClose} buttonText='Cancel' styling='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'/>
+                            <CustomButton disabled={isPending} buttonText='Add Task' styling='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' onClickCallback={handleSubmit}/>
                         </div>
                     </div>
                     </form>

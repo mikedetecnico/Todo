@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useUser } from '../features/auth/useUser';
 import IAuth from '../features/auth/IAuth';
 import DatePicker from '../widgets/DatePicker';
+import CustomButton from '../widgets/CustomButton';
 
 interface CreateTodoModalProps {
     auth: IAuth;
@@ -30,9 +31,7 @@ const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {
         onClose();
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
+    const handleSubmit = () => {
         const todo: Todo = {
             id: '',
             task: task,
@@ -62,7 +61,7 @@ const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {
     return (
         <>
             {show &&
-                <form onSubmit={handleSubmit} className='bg-primarygray shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4'>
+                <div className='bg-primarygray shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4'>
                     <div className='mb-4'>
                         <input className='shadow appearance-none border rounded w-full py-2 px-3 text-primarygray leading-tight focus:outline-none focus:shadow-outline' 
                             id='taskDescription' 
@@ -74,15 +73,11 @@ const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {
                     <DatePicker scheduledDate={scheduledDate} showDatePopup={showDatePopup} setShowDatePopup={setShowDatePopup} handleDateChange={handleDateChange}/>
                     <div className='md:flex md:items-center'>
                         <div className='md:w-2/3 flex flex-row items-start justify-between'>
-                            <button disabled={isPending} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' onClick={handleClose}>
-                                Cancel
-                            </button>
-                            <button disabled={isPending} className='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' type='submit'>
-                                Add Task
-                            </button>
+                            <CustomButton disabled={isPending} onClickCallback={handleClose} buttonText='Cancel' styling='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'/>
+                            <CustomButton disabled={isPending} buttonText='Add Task' styling='shadow bg-primaryblue hover:bg-hoverblue focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' onClickCallback={handleSubmit}/>
                         </div>
                     </div>
-                </form>
+                </div>
             }
         </>
     )

@@ -3,6 +3,7 @@ import MainTopHeader from "./MainTopHeader";
 import { UseMutateFunction } from "@tanstack/react-query";
 import { IAuthParams } from "../features/auth/useSignup";
 import TextInput from "../widgets/TextInput";
+import { toast } from "react-hot-toast";
 
 interface LoginFormProps {
     buttonText: string;
@@ -11,9 +12,10 @@ interface LoginFormProps {
     routeText: string;
     isLoading: boolean;
     displayName: boolean;
+    onValidate?: (email: string, password: string) => string | null ;
 }
 
-const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, displayName}: LoginFormProps) => {
+const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, displayName, onValidate}: LoginFormProps) => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [firstName, setFirstName] = useState<string>('');
@@ -21,6 +23,16 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, d
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (onValidate) {
+            const error = onValidate(email, password);
+
+            if (error) {
+                toast.error(error);
+                return;
+            }
+        }
+
         onSubmitCallback({email, password, firstName, lastName});
     }
 

@@ -26,3 +26,4 @@ Api/.vscode/*
 .env
 *admin.json
 Api/coverage/*
+FrontEnd/coverage/*

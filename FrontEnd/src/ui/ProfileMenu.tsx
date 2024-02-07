@@ -18,9 +18,9 @@ const ProfileMenu = ({userDisplayName, showProfileModal, onProfileModal, onSigno
                     {
                     showProfileModal && 
                         <div className='absolute top-16 left-10 bg-navbar border-2 border-gray-300 rounded-md shadow-md z-40'>
-                        <div className='flex flex-col'>
-                            <button className='p-2 hover:bg-hovergray' onClick={onSignout}>Logout</button>
-                        </div>
+                            <div className='flex flex-col'>
+                                <button className='p-2 hover:bg-hovergray' onClick={onSignout}>Logout</button>
+                            </div>
                         </div>
                     }
                 </button>

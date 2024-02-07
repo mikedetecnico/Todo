@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Api from "../../api/api";
+import ApiTodos from "../../services/apiTodos";
 import toast from 'react-hot-toast';
 
 interface DeleteTodoParams {
@@ -10,7 +10,7 @@ export function useDeleteTodo() {
     const queryClient = useQueryClient();
   
     const { isPending: isDeleting, mutate: deleteTodo } = useMutation({
-      mutationFn: async (params: DeleteTodoParams) => { await Api.deleteTodoById(params.id);},
+      mutationFn: async (params: DeleteTodoParams) => { await ApiTodos.deleteTodoById(params.id);},
       onSuccess: () => {
         toast.success('Todo deleted.');
 

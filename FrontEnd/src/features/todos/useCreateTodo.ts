@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Api, { Todo } from "../../api/api";
+import ApiTodos, { Todo } from "../../services/apiTodos";
 import toast from 'react-hot-toast';
 
 export function useCreateTodos() {
     const queryClient = useQueryClient();
   
     const { mutate: createTodo, isPending } = useMutation({
-      mutationFn: async (todo: Todo) => { await Api.addTodo(todo);},
+      mutationFn: async (todo: Todo) => { await ApiTodos.addTodo(todo);},
       onSuccess: () => {
         queryClient.invalidateQueries({queryKey: ['todos']});
       },

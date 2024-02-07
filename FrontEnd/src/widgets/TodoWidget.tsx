@@ -1,4 +1,4 @@
-import { Todo } from "../api/api";
+import { Todo } from "../services/apiTodos";
 
 interface TodoWidgetProps {
     todo: Todo;

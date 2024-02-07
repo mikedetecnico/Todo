@@ -1,5 +1,5 @@
 import Sidebar from "../components/Sidebar";
-import { Todo } from "../api/api";
+import { Todo } from "../services/apiTodos";
 import { useState } from "react";
 import IAuth from "../features/auth/IAuth";
 import CreateTodoModal from "../components/CreateTodoModal";

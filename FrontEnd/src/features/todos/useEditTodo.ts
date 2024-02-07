@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Api, { Todo } from "../../api/api";
+import ApiTodos, { Todo } from "../../services/apiTodos";
 import toast from 'react-hot-toast';
 
 export function useEditTodos() {
     const queryClient = useQueryClient();
   
     const { mutate: editTodo, isPending } = useMutation({
-      mutationFn: async (todo: Todo) => { await Api.updateTodoById(todo);},
+      mutationFn: async (todo: Todo) => { await ApiTodos.updateTodoById(todo);},
       onSuccess: () => {
         toast.success('Todo updated successfully.');
         queryClient.invalidateQueries({queryKey: ['todos']});

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CustomButton from "./CustomButton";
 import DatePicker from "./DatePicker";
-import { Todo } from "../api/api";
+import { Todo } from "../services/apiTodos";
 import { useUser } from "../features/auth/useUser";
 import IAuth from "../features/auth/IAuth";
 import TextInput from "./TextInput";

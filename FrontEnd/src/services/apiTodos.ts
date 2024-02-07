@@ -8,7 +8,7 @@ export interface Todo {
     userId: string | undefined;
 }
 
-export default class Api {
+export default class ApiTodos {
     static async getTodos(userId: string | undefined) : Promise<Todo[]> {
         if (userId === undefined) {
             throw new Error("User ID is undefined");

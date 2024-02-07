@@ -1,4 +1,4 @@
-import { Todo } from '../api/api';
+import { Todo } from '../services/apiTodos';
 import IAuth from '../features/auth/IAuth';
 import { useEditTodos } from '../features/todos/useEditTodo';
 import TodoModal from '../widgets/TodoModal';

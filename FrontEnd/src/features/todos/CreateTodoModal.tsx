@@ -1,6 +1,6 @@
-import { useCreateTodos } from '../features/todos/useCreateTodo';
-import IAuth from '../features/auth/IAuth';
-import TodoModal from '../widgets/TodoModal';
+import { useCreateTodos } from './useCreateTodo';
+import IAuth from '../auth/IAuth';
+import TodoModal from './TodoModal';
 
 interface CreateTodoModalProps {
     auth: IAuth;

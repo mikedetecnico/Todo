@@ -1,14 +1,14 @@
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../ui/Sidebar";
 import { Todo } from "../services/apiTodos";
 import { useState } from "react";
 import IAuth from "../features/auth/IAuth";
-import CreateTodoModal from "../components/CreateTodoModal";
+import CreateTodoModal from "../features/todos/CreateTodoModal";
 import { useUser } from "../features/auth/useUser";
 import { useTodos } from "../features/todos/useTodos";
 import { useDeleteTodo } from "../features/todos/useDeleteTodo";
-import EditTodoModal from "../components/EditTodoModal";
-import CustomButton from "../widgets/CustomButton";
-import TodoWidget from "../widgets/TodoWidget";
+import EditTodoModal from "../features/todos/EditTodoModal";
+import CustomButton from "../ui/CustomButton";
+import TodoWidget from "../features/todos/TodoWidget";
 import { BsPlus } from "react-icons/bs";
 
 interface HomeProps {

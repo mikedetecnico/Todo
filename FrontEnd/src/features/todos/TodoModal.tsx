@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import CustomButton from "./CustomButton";
-import DatePicker from "./DatePicker";
-import { Todo } from "../services/apiTodos";
-import { useUser } from "../features/auth/useUser";
-import IAuth from "../features/auth/IAuth";
-import TextInput from "./TextInput";
+import CustomButton from "../../ui/CustomButton";
+import DatePicker from "../../ui/DatePicker";
+import { Todo } from "../../services/apiTodos";
+import { useUser } from "../auth/useUser";
+import IAuth from "../auth/IAuth";
+import TextInput from "../../ui/TextInput";
 
 interface TodoModalProps {
     auth: IAuth;

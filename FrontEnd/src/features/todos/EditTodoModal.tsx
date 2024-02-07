@@ -1,7 +1,7 @@
-import { Todo } from '../services/apiTodos';
-import IAuth from '../features/auth/IAuth';
-import { useEditTodos } from '../features/todos/useEditTodo';
-import TodoModal from '../widgets/TodoModal';
+import { Todo } from '../../services/apiTodos';
+import IAuth from '../auth/IAuth';
+import { useEditTodos } from './useEditTodo';
+import TodoModal from './TodoModal';
 
 interface EditTodoModalProps {
     auth: IAuth;

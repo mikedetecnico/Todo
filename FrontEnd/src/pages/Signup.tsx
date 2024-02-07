@@ -1,6 +1,6 @@
 import IAuth from "../features/auth/IAuth";
 import { useSignup } from "../features/auth/useSignup";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../features/auth/LoginForm";
 
 interface SignupProps {
   auth: IAuth;

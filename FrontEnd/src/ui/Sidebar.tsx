@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useUser } from "../features/auth/useUser";
 import IAuth from "../features/auth/IAuth";
 import { useNavigate } from 'react-router-dom';
-import CustomButton from "../widgets/CustomButton";
-import ProfileMenu from "../widgets/ProfileMenu";
+import CustomButton from "./CustomButton";
+import ProfileMenu from "./ProfileMenu";
 import { BsPlus } from "react-icons/bs";
 
 interface SidebarProps {

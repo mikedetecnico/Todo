@@ -1,8 +1,8 @@
 import { useState } from "react";
-import MainTopHeader from "./MainTopHeader";
+import MainTopHeader from "../../ui/MainTopHeader";
 import { UseMutateFunction } from "@tanstack/react-query";
-import { IAuthParams } from "../features/auth/useSignup";
-import TextInput from "../widgets/TextInput";
+import { IAuthParams } from "./useSignup";
+import TextInput from "../../ui/TextInput";
 import { toast } from "react-hot-toast";
 
 interface LoginFormProps {

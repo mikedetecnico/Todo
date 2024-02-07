@@ -6,7 +6,7 @@ import FirebaseAuth from './features/auth/FirebaseAuth';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from 'react-hot-toast';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './ui/ProtectedRoute';
 import Home from './pages/Home';
 
 const queryClient = new QueryClient({

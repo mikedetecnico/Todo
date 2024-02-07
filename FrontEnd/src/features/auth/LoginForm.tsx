@@ -4,6 +4,7 @@ import { UseMutateFunction } from "@tanstack/react-query";
 import { IAuthParams } from "./useSignup";
 import TextInput from "../../ui/TextInput";
 import { toast } from "react-hot-toast";
+import CustomLabel from "../../ui/CustomLabel";
 
 interface LoginFormProps {
     buttonText: string;
@@ -42,9 +43,7 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, d
             <div className='h-screen flex items-center justify-center bg-primary'>
                 <form onSubmit={handleSubmit} className='bg-primarygray shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4'>
                     <div className='mb-4'>
-                        <label className='block text-white text-sm font-bold mb-2'>
-                        Email
-                        </label>
+                        <CustomLabel text='Email' />
                         <TextInput 
                             id='email'
                             placeholder='Email'
@@ -53,9 +52,7 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, d
                         />
                     </div>
                     <div className='mb-4'>
-                        <label className='block text-white text-sm font-bold mb-2'>
-                        Password
-                        </label>
+                        <CustomLabel text='Password' />
                         <TextInput 
                             id='password'
                             isPassword={true}
@@ -67,9 +64,7 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, d
                     {displayName && (
                         <>
                             <div className='mb-4'>
-                                <label className='block text-white text-sm font-bold mb-2'>
-                                First Name
-                                </label>
+                                <CustomLabel text='First Name' />
                                 <TextInput 
                                     id='firstName'
                                     placeholder='First Name'
@@ -78,9 +73,7 @@ const LoginForm = ({buttonText, onSubmitCallback, route, routeText, isLoading, d
                                 />
                             </div>
                             <div className='mb-4'>
-                                <label className='block text-white text-sm font-bold mb-2'>
-                                Last Name
-                                </label>
+                                <CustomLabel text='Last Name' />
                                 <TextInput 
                                     id='lastName'
                                     placeholder='Last Name'

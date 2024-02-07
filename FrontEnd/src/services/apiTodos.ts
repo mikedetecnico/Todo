@@ -9,27 +9,29 @@ export interface Todo {
 }
 
 export default class ApiTodos {
-    static async getTodos(userId: string | undefined) : Promise<Todo[]> {
+    readonly apiUrl : string;
+
+    constructor(apiUrl: string) {
+        this.apiUrl = apiUrl;
+    }
+
+    async getTodos(userId: string | undefined) : Promise<Todo[]> {
         if (userId === undefined) {
             throw new Error("User ID is undefined");
         }
 
-        const apiUrl : string = import.meta.env.VITE_API_URL;
-        return (await axios.get(`${apiUrl}/todos/${userId}`)).data;
+        return (await axios.get(`${this.apiUrl}/todos/${userId}`)).data;
     }
 
-    static async addTodo(todo: Todo) : Promise<Todo> {
-        const apiUrl : string = import.meta.env.VITE_API_URL;
-        return (await axios.post(`${apiUrl}/todos`, todo)).data;
+    async addTodo(todo: Todo) : Promise<Todo> {
+        return (await axios.post(`${this.apiUrl}/todos`, todo)).data;
     }
 
-    static async deleteTodoById(id: string) : Promise<Todo> {
-        const apiUrl : string = import.meta.env.VITE_API_URL;
-        return (await axios.delete(`${apiUrl}/todos/${id}`)).data;
+    async deleteTodoById(id: string) : Promise<Todo> {
+        return (await axios.delete(`${this.apiUrl}/todos/${id}`)).data;
     }
 
-    static async updateTodoById(todo: Todo) : Promise<Todo> {
-        const apiUrl : string = import.meta.env.VITE_API_URL;
-        return (await axios.put(`${apiUrl}/todos/${todo.id}`, todo)).data;
+    async updateTodoById(todo: Todo) : Promise<Todo> {
+        return (await axios.put(`${this.apiUrl}/todos/${todo.id}`, todo)).data;
     }
 }

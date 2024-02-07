@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import ApiTodos from '../../services/apiTodos';
+import ApiInstance from '../../services/apiInstance';
 
 export function useTodos(userId: string | undefined) {
     const {
@@ -11,7 +11,7 @@ export function useTodos(userId: string | undefined) {
         refetch,
     } = useQuery({
       queryKey: ['todos'],
-      queryFn: async () => { return await ApiTodos.getTodos(userId);}
+      queryFn: async () => { return await ApiInstance.getInstance(import.meta.env.VITE_API_URL).getTodos(userId);}
     });
 
     return { todos, isLoading, isError, error, isFetching, refetch }

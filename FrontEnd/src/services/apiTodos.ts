@@ -1,4 +1,5 @@
 import axios from "axios";
+import { User } from "firebase/auth";
 
 export interface Todo {
     id: string;
@@ -15,23 +16,47 @@ export default class ApiTodos {
         this.apiUrl = apiUrl;
     }
 
-    async getTodos(userId: string | undefined) : Promise<Todo[]> {
+    async getTodos(userId: string | undefined, user: User | null | undefined) : Promise<Todo[]> {
         if (userId === undefined) {
             throw new Error("User ID is undefined");
         }
 
-        return (await axios.get(`${this.apiUrl}/todos/${userId}`)).data;
+        const token = user && (await user.getIdToken());
+
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        return (await axios.get(`${this.apiUrl}/todos/${userId}`, config)).data;
     }
 
-    async addTodo(todo: Todo) : Promise<Todo> {
-        return (await axios.post(`${this.apiUrl}/todos`, todo)).data;
+    async addTodo(todo: Todo, user: User | null | undefined) : Promise<Todo> {
+        const token = user && (await user.getIdToken());
+        
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        return (await axios.post(`${this.apiUrl}/todos`, todo, config)).data;
     }
 
-    async deleteTodoById(id: string) : Promise<Todo> {
-        return (await axios.delete(`${this.apiUrl}/todos/${id}`)).data;
+    async deleteTodoById(id: string, user: User | null | undefined) : Promise<Todo> {
+        const token = user && (await user.getIdToken());
+
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        return (await axios.delete(`${this.apiUrl}/todos/${id}`, config)).data;
     }
 
-    async updateTodoById(todo: Todo) : Promise<Todo> {
-        return (await axios.put(`${this.apiUrl}/todos/${todo.id}`, todo)).data;
+    async updateTodoById(todo: Todo, user: User | null | undefined) : Promise<Todo> {
+        const token = user && (await user.getIdToken());
+
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        return (await axios.put(`${this.apiUrl}/todos/${todo.id}`, todo, config)).data;
     }
 }

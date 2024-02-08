@@ -11,7 +11,7 @@ interface EditTodoModalProps {
 }
 
 const EditTodoModal = ({auth, showModal, onClose, todo}: EditTodoModalProps) => {   
-    const {editTodo, isPending} = useEditTodos();
+    const {editTodo, isPending} = useEditTodos(auth);
     
     return (
         <TodoModal 

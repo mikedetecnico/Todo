@@ -9,7 +9,7 @@ interface CreateTodoModalProps {
 }
 
 const CreateTodoModal = ({auth, showModal, onClose}: CreateTodoModalProps) => {    
-    const {createTodo, isPending} = useCreateTodos();
+    const {createTodo, isPending} = useCreateTodos(auth);
     
     return (
         <TodoModal 

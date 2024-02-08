@@ -3,7 +3,6 @@ import { Todo } from "../services/apiTodos";
 import { useState } from "react";
 import IAuth from "../features/auth/IAuth";
 import CreateTodoModal from "../features/todos/CreateTodoModal";
-import { useUser } from "../features/auth/useUser";
 import { useTodos } from "../features/todos/useTodos";
 import { useDeleteTodo } from "../features/todos/useDeleteTodo";
 import EditTodoModal from "../features/todos/EditTodoModal";
@@ -16,9 +15,8 @@ interface HomeProps {
 }
 
 const Home = ({auth}: HomeProps) => {
-    const { user } = useUser(auth);
-    const {todos} = useTodos(user?.uid);
-    const {deleteTodo} = useDeleteTodo();
+    const {todos} = useTodos(auth);
+    const {deleteTodo} = useDeleteTodo(auth);
 
     const [showCreateModal, setShowCreateModal] = useState<boolean>(false);
 

@@ -1,6 +1,5 @@
 import { IConnection } from "./IConnection";
 import * as admin from "firebase-admin";
-import serviceAccount from '../../admin.json';
 
 export class FirebaseConnection<T> implements IConnection<T> {
     readonly db: admin.firestore.Firestore;
@@ -10,9 +9,6 @@ export class FirebaseConnection<T> implements IConnection<T> {
         if (db !== null) {
             this.db = db;
         } else {
-            admin.initializeApp({
-                credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-            });
             this.db = admin.firestore();
         }
 

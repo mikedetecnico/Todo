@@ -3,6 +3,11 @@ import { TodoRepository } from '../Repositories/TodoRepository';
 import { FirebaseConnection } from '../Connections/FirebaseConnection';
 import { Todo } from '../Models/Todo';
 import * as admin from "firebase-admin";
+import serviceAccount from '../../admin.json';
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+});
 
 describe('TodoController', () => {
   let controller: TodoController;

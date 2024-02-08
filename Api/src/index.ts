@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { VerifyToken } from './Middleware/VerifyToken';
-import todoRouter from './Controllers/TodoController';
+import todoRouter from './Router/TodoRouter';
 
 const app = express();
 app.use(cors());

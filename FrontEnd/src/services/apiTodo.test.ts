@@ -13,7 +13,7 @@ describe('todo api tests', () => {
         const resp = { data: todos };
         mockedAxios.get.mockResolvedValue(resp);
     
-        return api.getTodos('test').then((data) => expect(data).toEqual(todos));
+        return api.getTodos('test', null).then((data) => expect(data).toEqual(todos));
     });
 
     it('should add a todo', () => {
@@ -22,7 +22,7 @@ describe('todo api tests', () => {
         const resp = { data: todo };
         mockedAxios.post.mockResolvedValue(resp);
     
-        return api.addTodo(todo).then((data) => expect(data).toEqual(todo));
+        return api.addTodo(todo, null).then((data) => expect(data).toEqual(todo));
     });
 
     it('should delete a todo', () => {
@@ -31,7 +31,7 @@ describe('todo api tests', () => {
         const resp = { data: todo };
         mockedAxios.delete.mockResolvedValue(resp);
     
-        return api.deleteTodoById('1').then((data) => expect(data).toEqual(todo));
+        return api.deleteTodoById('1', null).then((data) => expect(data).toEqual(todo));
     });
 
     it('should update a todo', () => {
@@ -40,6 +40,6 @@ describe('todo api tests', () => {
         const resp = { data: todo };
         mockedAxios.put.mockResolvedValue(resp);
     
-        return api.updateTodoById(todo).then((data) => expect(data).toEqual(todo));
+        return api.updateTodoById(todo, null).then((data) => expect(data).toEqual(todo));
     });
 });

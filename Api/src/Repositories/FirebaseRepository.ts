@@ -1,7 +1,7 @@
-import { IConnection } from "./IConnection";
+import { IRepository } from "./IRepository";
 import * as admin from "firebase-admin";
 
-export class FirebaseConnection<T> implements IConnection<T> {
+export class FirebaseRepository<T> implements IRepository<T> {
     readonly db: admin.firestore.Firestore;
     readonly collectionName: string;
 

@@ -1,16 +1,16 @@
-import { FirebaseConnection } from "../Connections/FirebaseConnection";
-import { IConnection } from "../Connections/IConnection";
+import { FirebaseRepository } from "../Repositories/FirebaseRepository";
+import { IRepository } from "../Repositories/IRepository";
 import { Todo } from "../Models/Todo";
-import { IRepository } from "./IRepository";
+import { IService } from "./IService";
 
-export class TodoRepository implements IRepository<Todo> {
-    readonly connection: IConnection<Todo>;
+export class TodoService implements IService<Todo> {
+    readonly connection: IRepository<Todo>;
 
-    constructor(connection: IConnection<Todo> | null = null) {
+    constructor(connection: IRepository<Todo> | null = null) {
         if (connection !== null) {
             this.connection = connection;
         } else {
-            this.connection = new FirebaseConnection<Todo>('todos');
+            this.connection = new FirebaseRepository<Todo>('todos');
         }
     }
 

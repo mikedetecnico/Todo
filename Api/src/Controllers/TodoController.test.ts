@@ -1,6 +1,6 @@
 import { TodoController } from './TodoController';
-import { TodoRepository } from '../Repositories/TodoRepository';
-import { FirebaseConnection } from '../Connections/FirebaseConnection';
+import { TodoService } from '../Services/TodoService';
+import { FirebaseRepository } from '../Repositories/FirebaseRepository';
 import { Todo } from '../Models/Todo';
 import * as admin from "firebase-admin";
 import serviceAccount from '../../admin.json';
@@ -11,12 +11,12 @@ admin.initializeApp({
 
 describe('TodoController', () => {
   let controller: TodoController;
-  let firebaseConnection: FirebaseConnection<Todo>;
-  let todoRepository: TodoRepository;
+  let firebaseConnection: FirebaseRepository<Todo>;
+  let todoRepository: TodoService;
 
   beforeEach(() => {
-    firebaseConnection = new FirebaseConnection<Todo>('todos', admin.firestore());
-    todoRepository = new TodoRepository(firebaseConnection);
+    firebaseConnection = new FirebaseRepository<Todo>('todos', admin.firestore());
+    todoRepository = new TodoService(firebaseConnection);
     controller = new TodoController(todoRepository);
   });
 
@@ -146,8 +146,8 @@ describe('TodoController', () => {
   it('should return 500 when adding a todo fails', async () => {
     // mocking the firebase connection to throw an error when adding a todo
     // since there will be no db connection.
-    const testFirebaseConnection = new FirebaseConnection<Todo>('todos', {} as any);
-    const testTodoRepository = new TodoRepository(testFirebaseConnection);
+    const testFirebaseConnection = new FirebaseRepository<Todo>('todos', {} as any);
+    const testTodoRepository = new TodoService(testFirebaseConnection);
     const testController = new TodoController(testTodoRepository);
 
     const mockResponse = {
@@ -163,8 +163,8 @@ describe('TodoController', () => {
   it('should return 500 when getting todos fails', async () => {
     // mocking the firebase connection to throw an error when getting todos
     // since there will be no db connection.
-    const testFirebaseConnection = new FirebaseConnection<Todo>('todos', {} as any);
-    const testTodoRepository = new TodoRepository(testFirebaseConnection);
+    const testFirebaseConnection = new FirebaseRepository<Todo>('todos', {} as any);
+    const testTodoRepository = new TodoService(testFirebaseConnection);
     const testController = new TodoController(testTodoRepository);
 
     const mockResponse = {

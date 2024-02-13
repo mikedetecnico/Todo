@@ -1,13 +1,13 @@
-import { TodoRepository } from "../Repositories/TodoRepository";
+import { TodoService } from "../Services/TodoService";
 
 export class TodoController {
-    readonly repository : TodoRepository;
+    readonly repository : TodoService;
 
-    constructor (repository: TodoRepository | null = null) {
+    constructor (repository: TodoService | null = null) {
         if (repository !== null) {
             this.repository = repository;
         } else {
-            this.repository = new TodoRepository();
+            this.repository = new TodoService();
         }
     }
 

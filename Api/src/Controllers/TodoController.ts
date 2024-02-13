@@ -1,19 +1,19 @@
 import { TodoService } from "../Services/TodoService";
 
 export class TodoController {
-    readonly repository : TodoService;
+    readonly service : TodoService;
 
-    constructor (repository: TodoService | null = null) {
-        if (repository !== null) {
-            this.repository = repository;
+    constructor (service: TodoService | null = null) {
+        if (service !== null) {
+            this.service = service;
         } else {
-            this.repository = new TodoService();
+            this.service = new TodoService();
         }
     }
 
     async add(request: any, response: any) {
         try {
-            const todo = await this.repository.add(request.body);
+            const todo = await this.service.add(request.body);
             response.status(201).json(todo);
         } catch(error: any) {
             response.status(500).json(error.message);
@@ -21,7 +21,7 @@ export class TodoController {
     }
     async delete(request: any, response: any) {
         try {
-            const todo = await this.repository.delete(request.params.id);
+            const todo = await this.service.delete(request.params.id);
             response.status(200).json(todo);
         } catch (error: any) {
             response.status(404).json(error.message);
@@ -29,7 +29,7 @@ export class TodoController {
     }
     async getByUserId(request: any, response: any) {
         try {
-            const todos = await this.repository.getByUserId(request.params.userId);
+            const todos = await this.service.getByUserId(request.params.userId);
             response.status(200).json(todos);
         } catch (error: any) {
             response.status(500).json(error.message);
@@ -38,7 +38,7 @@ export class TodoController {
 
     async update(request: any, response: any) {
         try {
-            const todo = await this.repository.update(request.body, request.params.id);
+            const todo = await this.service.update(request.body, request.params.id);
             response.status(200).json(todo);
         } catch (error: any) {
             response.status(404).json(error.message);

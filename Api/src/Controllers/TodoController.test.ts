@@ -11,17 +11,17 @@ admin.initializeApp({
 
 describe('TodoController', () => {
   let controller: TodoController;
-  let firebaseConnection: FirebaseRepository<Todo>;
-  let todoRepository: TodoService;
+  let firebaseRepository: FirebaseRepository<Todo>;
+  let todoService: TodoService;
 
   beforeEach(() => {
-    firebaseConnection = new FirebaseRepository<Todo>('todos', admin.firestore());
-    todoRepository = new TodoService(firebaseConnection);
-    controller = new TodoController(todoRepository);
+    firebaseRepository = new FirebaseRepository<Todo>('todos', admin.firestore());
+    todoService = new TodoService(firebaseRepository);
+    controller = new TodoController(todoService);
   });
 
   afterEach(async () => {
-    await firebaseConnection.deleteAll();
+    await firebaseRepository.deleteAll();
   });
 
   it('should add a todo', async () => {
